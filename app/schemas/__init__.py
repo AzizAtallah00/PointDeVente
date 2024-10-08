@@ -5,3 +5,5 @@ from .changePassword import PasswordReset
 from .token import Token
 from .token import TokenData
 from .session import SessionOutput
+from .customer import CustomerInput
+from .customer import CustomerOutput
