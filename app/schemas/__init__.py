@@ -7,3 +7,5 @@ from .token import TokenData
 from .session import SessionOutput
 from .customer import CustomerInput
 from .customer import CustomerOutput
+from .category import CategoryInput
+from .category import CategoryOutput
