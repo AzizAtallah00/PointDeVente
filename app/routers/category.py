@@ -35,6 +35,17 @@ def getAll (currUser : TokenData = Depends(getCurrentUser), db : Session = Depen
         raise HTTPException (status_code=403, detail="you have no privileges !!!!!")
     
 
+@router.get("/{name}", response_model=CategoryOutput)
+def getByName (name, currUser : TokenData = Depends(getCurrentUser), db : Session = Depends(get_db)):
+    if ('INVENTORY_MANAGER' in currUser.roles or 'ADMIN' in currUser.roles or 'SUPERUSER' in currUser.roles):
+        categorie = db.query(Category).filter(Category.name == name).first()
+        if categorie is None :
+            raise HTTPException (status_code=404, detail="Customer not found !!!!!")
+        return categorie
+    else:
+        raise HTTPException (status_code=403, detail="you have no privileges !!!!!")
+    
+
 @router.put("/{id}", response_model=CategoryOutput)
 def updateCustomer (id, cat:CategoryInput, currUser : TokenData = Depends(getCurrentUser), db : Session = Depends(get_db)):
     if ('INVENTORY_MANAGER' in currUser.roles or 'ADMIN' in currUser.roles or 'SUPERUSER' in currUser.roles):
