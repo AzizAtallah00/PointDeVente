@@ -1,4 +1,5 @@
 from sqlalchemy import Column, DateTime, Integer, String, func
+from sqlalchemy.orm import relationship
 from ..database import Base
 
 class Category (Base):
@@ -9,3 +10,5 @@ class Category (Base):
     description = Column (String)
     icon = Column (String, nullable=False)
     created_on = Column (DateTime, nullable=False, server_default = func.now())
+
+    categories = relationship("Product", cascade="all, delete-orphan")

@@ -1,4 +1,5 @@
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, func, Float
+from sqlalchemy.orm import relationship
 from ..database import Base
 
 class Product (Base):
@@ -11,4 +12,6 @@ class Product (Base):
     image_link = Column (String, nullable = False)
     quantity = Column (Integer, nullable = False)
     category_id = Column (Integer, ForeignKey('categories.id'))
-    created_on = Column (DateTime, nullable = False, server_default = func.now())    
+    created_on = Column (DateTime, nullable = False, server_default = func.now()) 
+
+    category = relationship ("Category")   

@@ -9,3 +9,5 @@ from .customer import CustomerInput
 from .customer import CustomerOutput
 from .category import CategoryInput
 from .category import CategoryOutput
+from .product import ProductInput
+from .product import ProductOutput
